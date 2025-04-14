@@ -4,7 +4,13 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            Console.WindowHeight = 16;
+            Console.WindowWidth = 32;
+            Console.BufferHeight = 16;
+            Console.BufferWidth = 32;
+
+
+            Console.ReadKey();
         }
     }
 }
