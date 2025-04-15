@@ -42,13 +42,13 @@ namespace Snake_game
         }
         public static void VisualizeList()
         {
+            Console.Clear();
             foreach (SnakePart snakePart in _snakeParts)
             {
                 Console.SetCursorPosition(snakePart.X, snakePart.Y);
 
                 Console.Write(snakePart.Shape);
             }
-            Console.Clear();
         }
     }
 }
