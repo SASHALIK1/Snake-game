@@ -9,6 +9,12 @@
             Console.BufferHeight = 16;
             Console.BufferWidth = 32;
 
+            while (true)
+            {
+                Snake.Move();
+
+                Thread.Sleep(1000);
+            }
 
             Console.ReadKey();
         }
