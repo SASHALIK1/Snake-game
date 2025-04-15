@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace Snake_game
 {
-    internal class SnakePart
+    internal class SnakePart : GameObject
     {
-        public int X;
-        public int Y;
-        public char Shape;
         public SnakePart(int x, int y, char shape)
         {
             X = x;
