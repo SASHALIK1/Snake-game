@@ -4,21 +4,25 @@
     {
         static void Main(string[] args)
         {
-            Console.WindowHeight = 16;
-            Console.WindowWidth = 32;
-            Console.BufferHeight = 16;
-            Console.BufferWidth = 32;
+            if (OperatingSystem.IsWindows())
+            {
+                SetConsoleConfigurations();
 
 
-            Task readKeyTask = new Task(InputHandle);
-            Task gameUpdaterTask = new Task(GameLoop);
+                Task readKeyTask = new Task(InputHandle);
+                Task gameUpdaterTask = new Task(GameLoop);
 
-            readKeyTask.Start();
-            gameUpdaterTask.Start();
+                readKeyTask.Start();
+                gameUpdaterTask.Start();
 
-            gameUpdaterTask.Wait();
+                gameUpdaterTask.Wait();
 
-            Console.ReadKey();
+                Console.ReadKey();
+            }
+            else
+            {
+                Console.WriteLine("Only windows supported");
+            }
         }
         private static void GameLoop()
         {
@@ -28,6 +32,14 @@
 
                 Thread.Sleep(1000);
             }
+        }
+        private static void SetConsoleConfigurations()
+        {
+            Console.CursorVisible = false;
+            Console.WindowHeight = 16;
+            Console.WindowWidth = 32;
+            Console.BufferHeight = 16;
+            Console.BufferWidth = 32;
         }
         private static void InputHandle()
         {
