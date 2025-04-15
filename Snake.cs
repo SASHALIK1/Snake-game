@@ -19,7 +19,7 @@ namespace Snake_game
         }
         public static void Move()
         {
-            _snakeParts.RemoveAt(_snakeParts.Count - 1);
+            _snakeParts.RemoveAt(0);
 
 
             if (_direction == 'w')
