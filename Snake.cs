@@ -8,7 +8,9 @@ namespace Snake_game
 {
     static class Snake
     {
-        private static List<SnakePart> _snakeParts { get; set; } = new List<SnakePart>();
+        private const char SnakeShape = '0';
+        public static IReadOnlyList<SnakePart> SnakeParts { get { return (IReadOnlyList<SnakePart>)_snakeParts.ToList(); } }
+        private static Queue<SnakePart> _snakeParts { get; set; } = new Queue<SnakePart>();
 
         private static char _direction = 'w';
         public static char Direction
@@ -28,30 +30,30 @@ namespace Snake_game
 
         static Snake()
         {
-            _snakeParts.Add(new SnakePart(8, 13, '0'));
-            _snakeParts.Add(new SnakePart(8, 12, '0'));
+            _snakeParts.Enqueue(new SnakePart(8, 13, SnakeShape));
+            _snakeParts.Enqueue(new SnakePart(8, 12, SnakeShape));
         }
         public static void Move()
         {
-            _snakeParts.RemoveAt(0);
-
+            _snakeParts.Dequeue();
 
             if (_direction == 'w')
             {
-                _snakeParts.Add(new SnakePart(_snakeParts[_snakeParts.Count - 1].X, _snakeParts[_snakeParts.Count - 1].Y - 1, '0'));
+                _snakeParts.Enqueue(new SnakePart(SnakeParts[_snakeParts.Count - 1].X, SnakeParts[_snakeParts.Count - 1].Y - 1, SnakeShape));
             }
             else if (_direction == 's')
             {
-                _snakeParts.Add(new SnakePart(_snakeParts[_snakeParts.Count - 1].X, _snakeParts[_snakeParts.Count - 1].Y + 1, '0'));
+                _snakeParts.Enqueue(new SnakePart(SnakeParts[_snakeParts.Count - 1].X, SnakeParts[_snakeParts.Count - 1].Y + 1, SnakeShape));
             }
             else if (_direction == 'a')
             {
-                _snakeParts.Add(new SnakePart(_snakeParts[_snakeParts.Count - 1].X - 1, _snakeParts[_snakeParts.Count - 1].Y, '0'));
+                _snakeParts.Enqueue(new SnakePart(SnakeParts[_snakeParts.Count - 1].X - 1, SnakeParts[_snakeParts.Count - 1].Y, SnakeShape));
             }
             else if (_direction == 'd')
             {
-                _snakeParts.Add(new SnakePart(_snakeParts[_snakeParts.Count - 1].X + 1, _snakeParts[_snakeParts.Count - 1].Y, '0'));
+                _snakeParts.Enqueue(new SnakePart(SnakeParts[_snakeParts.Count - 1].X + 1, SnakeParts[_snakeParts.Count - 1].Y, SnakeShape));
             }
+
             VisualizeList();
         }
         public static void VisualizeList()
