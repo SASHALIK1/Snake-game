@@ -12,8 +12,8 @@ namespace Snake_game
         public static IReadOnlyList<SnakePart> SnakeParts { get { return (IReadOnlyList<SnakePart>)_snakeParts.ToList(); } }
         private static Queue<SnakePart> _snakeParts { get; set; } = new Queue<SnakePart>();
 
-        private static char _direction = 'w';
-        public static char Direction
+        private static ConsoleKey _direction = ConsoleKey.W;
+        public static ConsoleKey Direction
         {
             get
             {
@@ -21,7 +21,7 @@ namespace Snake_game
             }
             set
             {
-                if (value == 'w' || value == 's' || value == 'a' || value == 'd')
+                if (value == ConsoleKey.W || value == ConsoleKey.S || value == ConsoleKey.A || value == ConsoleKey.D)
                 {
                     _direction = value;
                 }
@@ -37,23 +37,22 @@ namespace Snake_game
         {
             _snakeParts.Dequeue();
 
-            if (_direction == 'w')
+            if (_direction == ConsoleKey.W)
             {
                 _snakeParts.Enqueue(new SnakePart(SnakeParts[_snakeParts.Count - 1].X, SnakeParts[_snakeParts.Count - 1].Y - 1, SnakeShape));
             }
-            else if (_direction == 's')
+            else if (_direction == ConsoleKey.S)
             {
                 _snakeParts.Enqueue(new SnakePart(SnakeParts[_snakeParts.Count - 1].X, SnakeParts[_snakeParts.Count - 1].Y + 1, SnakeShape));
             }
-            else if (_direction == 'a')
+            else if (_direction == ConsoleKey.A)
             {
                 _snakeParts.Enqueue(new SnakePart(SnakeParts[_snakeParts.Count - 1].X - 1, SnakeParts[_snakeParts.Count - 1].Y, SnakeShape));
             }
-            else if (_direction == 'd')
+            else if (_direction == ConsoleKey.D)
             {
                 _snakeParts.Enqueue(new SnakePart(SnakeParts[_snakeParts.Count - 1].X + 1, SnakeParts[_snakeParts.Count - 1].Y, SnakeShape));
             }
-
             VisualizeList();
         }
         public static void VisualizeList()

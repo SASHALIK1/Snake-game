@@ -34,7 +34,7 @@
             while (true)
             {
                 ConsoleKeyInfo keyInfo = Console.ReadKey(intercept: true);
-                Snake.Direction = keyInfo.KeyChar;
+                Snake.Direction = keyInfo.Key;
             }
         }
 
