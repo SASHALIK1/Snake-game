@@ -38,6 +38,17 @@ namespace Snake_game
             {
                 _snakeParts.Add(new SnakePart(_snakeParts[_snakeParts.Count - 1].X + 1, _snakeParts[_snakeParts.Count - 1].Y, '0'));
             }
+            VisualizeList();
+        }
+        public static void VisualizeList()
+        {
+            foreach (SnakePart snakePart in _snakeParts)
+            {
+                Console.SetCursorPosition(snakePart.X, snakePart.Y);
+
+                Console.Write(snakePart.Shape);
+            }
+            Console.Clear();
         }
     }
 }
