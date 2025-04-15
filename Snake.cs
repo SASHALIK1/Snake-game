@@ -11,6 +11,20 @@ namespace Snake_game
         private static List<SnakePart> _snakeParts { get; set; } = new List<SnakePart>();
 
         private static char _direction = 'w';
+        public static char Direction
+        {
+            get
+            {
+                return _direction;
+            }
+            set
+            {
+                if (value == 'w' || value == 's' || value == 'a' || value == 'd')
+                {
+                    _direction = value;
+                }
+            }
+        }
 
         static Snake()
         {
