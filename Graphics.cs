@@ -34,8 +34,7 @@ namespace Snake_game
         }
         public static void VisualizeObject(GameObject visualizableObject)
         {
-            Console.SetCursorPosition(visualizableObject.X, visualizableObject.Y);
-            Console.Write(visualizableObject.Shape);
+            VisualizeChar(visualizableObject.X, visualizableObject.Y, visualizableObject.Shape);
         }
         public static void VisualizeWalls()
         {
@@ -47,11 +46,9 @@ namespace Snake_game
 
             for (int i = 0; i < Console.BufferHeight; i++)
             {
-                Console.SetCursorPosition(0, i);
-                Console.Write(WallSymbol);
+                VisualizeChar(0, i, WallSymbol);
 
-                Console.SetCursorPosition(Console.BufferWidth - 1, i);
-                Console.Write(WallSymbol);
+                VisualizeChar(Console.BufferWidth - 1, i, WallSymbol);
             }
         }
         public static void ShowGameOverText()
@@ -62,8 +59,12 @@ namespace Snake_game
         }
         public static void ClearVisualizedObject(GameObject gameObject)
         {
-            Console.SetCursorPosition(gameObject.X, gameObject.Y);
-            Console.Write(' ');
+            VisualizeChar(gameObject.X, gameObject.Y, ' ');
+        }
+        private static void VisualizeChar(int coordinateX, int coordinateY, char symbol)
+        {
+            Console.SetCursorPosition(coordinateX, coordinateY);
+            Console.Write(symbol);
         }
     }
 }
