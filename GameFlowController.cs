@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Snake_game
 {
-    class GameFlowController
+    internal static class GameFlowController
     {
         private const int MinGameDelay = 190;
         private const int DelayChangeStep = 5;
