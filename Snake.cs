@@ -59,8 +59,9 @@ namespace Snake_game
             }
             else
             {
+                Graphics.ClearVisualizedObject(_snakeParts.Dequeue());
                 EnqueueNewSnakeUnit();
-                _snakeParts.Dequeue();
+                
             }
 
             if (snakeHead.X > Console.BufferWidth - 2 || snakeHead.Y > Console.BufferHeight - 2 || snakeHead.X < 1 || snakeHead.Y < 1)

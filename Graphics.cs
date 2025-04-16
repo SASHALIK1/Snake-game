@@ -42,5 +42,10 @@ namespace Snake_game
             Console.SetCursorPosition(0, 0);
             Console.WriteLine(GameOverText);
         }
+        public static void ClearVisualizedObject(GameObject gameObject)
+        {
+            Console.SetCursorPosition(gameObject.X, gameObject.Y);
+            Console.Write(' ');
+        }
     }
 }
