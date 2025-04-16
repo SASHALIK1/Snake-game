@@ -10,10 +10,15 @@ namespace Snake_game
     {
         private const char SnakeShape = '0';
         public static IReadOnlyList<SnakePart> SnakeParts { get { return (IReadOnlyList<SnakePart>)_snakeParts.ToList(); } }
-        private static Queue<SnakePart> _snakeParts { get; set; } = new Queue<SnakePart>();
+        private static Queue<SnakePart> _snakeParts { get; set; } = new Queue<SnakePart>(new[]
+{
+            new SnakePart(8, 13, SnakeShape),
+            new SnakePart(8, 12, SnakeShape)
+        });
+
         private static GameKeys _currentDirection = GameKeys.Up;
         private static GameKeys _direction = _currentDirection;
-        private static Fruit _currentFruit;
+        private static Fruit _currentFruit = FruitSpawner.CreateFruit(_snakeParts.ToList());
         public static GameKeys Direction
         {
             get
@@ -43,14 +48,6 @@ namespace Snake_game
                 }
             }
         }
-
-        static Snake()
-        {
-            _snakeParts.Enqueue(new SnakePart(8, 13, SnakeShape));
-            _snakeParts.Enqueue(new SnakePart(8, 12, SnakeShape));
-
-            _currentFruit = FruitSpawner.CreateFruit(_snakeParts.ToList());
-        }
         public static void Move()
         {
             _currentDirection = _direction;
@@ -71,14 +68,14 @@ namespace Snake_game
             if (_currentFruit != null && snakeHead.X == _currentFruit.X && snakeHead.Y == _currentFruit.Y)
             {
                 _currentFruit = FruitSpawner.CreateFruit(_snakeParts.ToList());
-                EnqueueNewSnakeUnit();
                 GameFlowController.DecreaseDelay();
             }
             else
             {
                 Graphics.ClearVisualizedObject(_snakeParts.Dequeue());
-                EnqueueNewSnakeUnit();
             }
+            EnqueueNewSnakeUnit();
+
 
             if (snakeHead.X > Console.BufferWidth - 2 || snakeHead.Y > Console.BufferHeight - 2 || snakeHead.X < 1 || snakeHead.Y < 1)
                 GameFlowController.StopGame();
@@ -91,24 +88,36 @@ namespace Snake_game
                 }
             }
         }
-        public static void EnqueueNewSnakeUnit()
+        private static void EnqueueNewSnakeUnit()
         {
             if (_currentDirection == GameKeys.Up)
             {
-                _snakeParts.Enqueue(new SnakePart(SnakeParts[_snakeParts.Count - 1].X, SnakeParts[_snakeParts.Count - 1].Y - 1, SnakeShape));
+                _snakeParts.Enqueue(
+                    new SnakePart(GetReadOnlySnakeParts()[_snakeParts.Count - 1].X,
+                    GetReadOnlySnakeParts()[_snakeParts.Count - 1].Y - 1, SnakeShape));
             }
             else if (_currentDirection == GameKeys.Down)
             {
-                _snakeParts.Enqueue(new SnakePart(SnakeParts[_snakeParts.Count - 1].X, SnakeParts[_snakeParts.Count - 1].Y + 1, SnakeShape));
+                _snakeParts.Enqueue(
+                    new SnakePart(GetReadOnlySnakeParts()[_snakeParts.Count - 1].X,
+                    GetReadOnlySnakeParts()[_snakeParts.Count - 1].Y + 1, SnakeShape));
             }
             else if (_currentDirection == GameKeys.Left)
             {
-                _snakeParts.Enqueue(new SnakePart(SnakeParts[_snakeParts.Count - 1].X - 1, SnakeParts[_snakeParts.Count - 1].Y, SnakeShape));
+                _snakeParts.Enqueue(
+                    new SnakePart(GetReadOnlySnakeParts()[_snakeParts.Count - 1].X - 1,
+                    GetReadOnlySnakeParts()[_snakeParts.Count - 1].Y, SnakeShape));
             }
             else if (_currentDirection == GameKeys.Right)
             {
-                _snakeParts.Enqueue(new SnakePart(SnakeParts[_snakeParts.Count - 1].X + 1, SnakeParts[_snakeParts.Count - 1].Y, SnakeShape));
+                _snakeParts.Enqueue(
+                    new SnakePart(GetReadOnlySnakeParts()[_snakeParts.Count - 1].X + 1,
+                    GetReadOnlySnakeParts()[_snakeParts.Count - 1].Y, SnakeShape));
             }
+        }
+        private static IReadOnlyList<SnakePart> GetReadOnlySnakeParts()
+        {
+            return _snakeParts.ToList();
         }
     }
 }
