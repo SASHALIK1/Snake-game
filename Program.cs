@@ -9,7 +9,7 @@
                 SetConsoleConfigurations();
 
 
-                Task readKeyTask = new Task(InputHandle);
+                Task readKeyTask = InputHandler.GetCheckKeyTask();
                 Task gameUpdaterTask = GameFlowController.GetGameUpdaterTask();
 
                 readKeyTask.Start();
@@ -32,14 +32,5 @@
             Console.BufferHeight = 16;
             Console.BufferWidth = 32;
         }
-        private static void InputHandle()
-        {
-            while (GameFlowController.IsGameRunnig)
-            {
-                ConsoleKeyInfo keyInfo = Console.ReadKey(intercept: true);
-                Snake.Direction = keyInfo.Key;
-            }
-        }
-
     }
 }

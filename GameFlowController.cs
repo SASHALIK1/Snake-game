@@ -27,10 +27,12 @@ namespace Snake_game
         }
         public static Task GetGameUpdaterTask()
         {
-            _isUpdaterTaskRetrieved = true;
-            return !_isUpdaterTaskRetrieved ?
-                new Task(GameUpdater) :
-                throw new InvalidOperationException("Game flow task has already been retrieved.");
+            if (!_isUpdaterTaskRetrieved)
+            {
+                _isUpdaterTaskRetrieved = true;
+                return new Task(GameUpdater);
+            }
+            throw new InvalidOperationException("Game flow task has already been retrieved.");
         }
         private static void GameUpdater()
         {
