@@ -12,7 +12,7 @@ namespace Snake_game
         private const int DelayChangeStep = 5;
         public static bool IsGameRunnig { get; private set; } = true;
         public static int CurrentGameDeleay { get; private set; } = 400;
-        private static bool isGameUpdaterTaskGotten = false;
+        private static bool _isUpdaterTaskRetrieved = false;
         public static void DecreaseDelay()
         {
             if (CurrentGameDeleay > MinGameDelay)
@@ -27,7 +27,8 @@ namespace Snake_game
         }
         public static Task GetGameUpdaterTask()
         {
-            return !isGameUpdaterTaskGotten ?
+            _isUpdaterTaskRetrieved = true;
+            return !_isUpdaterTaskRetrieved ?
                 new Task(GameUpdater) :
                 throw new InvalidOperationException("Game flow task has already been retrieved.");
         }
