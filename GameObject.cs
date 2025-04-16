@@ -14,9 +14,7 @@ namespace Snake_game
         public char Shape { get; protected set; }
         public override bool Equals(object? obj)
         {
-            if (obj == null || this.GetType() != obj.GetType()) return false;
-
-            GameObject other = (GameObject)obj;
+            if (obj is not GameObject other) return false;
             return other.X == X && other.Y == Y;
         }
         public override int GetHashCode()
