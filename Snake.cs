@@ -13,6 +13,7 @@ namespace Snake_game
         private static Queue<SnakePart> _snakeParts { get; set; } = new Queue<SnakePart>();
 
         private static ConsoleKey _direction = ConsoleKey.W;
+        private static Fruit _currentFruit;
         public static ConsoleKey Direction
         {
             get
@@ -32,6 +33,8 @@ namespace Snake_game
         {
             _snakeParts.Enqueue(new SnakePart(8, 13, SnakeShape));
             _snakeParts.Enqueue(new SnakePart(8, 12, SnakeShape));
+
+            _currentFruit = FruitSpawner.CreateFruit(_snakeParts.ToList());
         }
         public static void Move()
         {
@@ -39,7 +42,13 @@ namespace Snake_game
 
             _snakeParts.Dequeue();
 
+            if (_currentFruit != null)
+            {
+                Graphics.VisualizeObject(_currentFruit);
+            }
+
             EnqueueNewSnakeUnit();
+
 
             Graphics.VisualizeList(_snakeParts);
         }
