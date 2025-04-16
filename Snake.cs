@@ -39,7 +39,7 @@ namespace Snake_game
         public static void Move()
         {
             CheckCollision();
-            if (Program.IsGameRunnig)
+            if (GameFlowController.IsGameRunnig)
             {
                 if (_currentFruit != null)
                 {
@@ -65,13 +65,13 @@ namespace Snake_game
             }
 
             if (snakeHead.X > Console.BufferWidth - 2 || snakeHead.Y > Console.BufferHeight - 2 || snakeHead.X < 1 || snakeHead.Y < 1)
-                Program.IsGameRunnig = false;
+                GameFlowController.StopGame();
             else
             {
                 foreach (SnakePart snakePart in _snakeParts)
                 {
                     if (snakePart != snakeHead && snakePart.Equals(snakeHead))
-                        Program.IsGameRunnig = false;
+                        GameFlowController.StopGame();
                 }
             }
         }

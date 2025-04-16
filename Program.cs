@@ -2,7 +2,6 @@
 {
     internal class Program
     {
-        public static bool IsGameRunnig { get; set; } = true;
         static void Main(string[] args)
         {
             if (OperatingSystem.IsWindows())
@@ -11,7 +10,7 @@
 
 
                 Task readKeyTask = new Task(InputHandle);
-                Task gameUpdaterTask = new Task(GameLoop);
+                Task gameUpdaterTask = GameFlowController.GetGameUpdaterTask();
 
                 readKeyTask.Start();
                 gameUpdaterTask.Start();
@@ -27,7 +26,7 @@
         }
         private static void GameLoop()
         {
-            while (IsGameRunnig)
+            while (GameFlowController.IsGameRunnig)
             {
                 Snake.Move();
 
@@ -45,7 +44,7 @@
         }
         private static void InputHandle()
         {
-            while (IsGameRunnig)
+            while (GameFlowController.IsGameRunnig)
             {
                 ConsoleKeyInfo keyInfo = Console.ReadKey(intercept: true);
                 Snake.Direction = keyInfo.Key;
