@@ -23,7 +23,15 @@ namespace Snake_game
             while (GameFlowController.IsGameRunnig)
             {
                 ConsoleKeyInfo keyInfo = Console.ReadKey(intercept: true);
-                Snake.Direction = keyInfo.Key;
+
+                if (keyInfo.Key == ConsoleKey.W)
+                    Snake.Direction = GameKeys.Up;
+                else if (keyInfo.Key == ConsoleKey.S)
+                    Snake.Direction = GameKeys.Down;
+                else if (keyInfo.Key == ConsoleKey.A)
+                    Snake.Direction = GameKeys.Left;
+                else if (keyInfo.Key == ConsoleKey.D)
+                    Snake.Direction = GameKeys.Right;
             }
         }
     }
