@@ -38,7 +38,7 @@ namespace Snake_game
         {
             while (IsGameRunnig)
             {
-                Thread.Sleep(GameFlowController.CurrentGameDeleay);
+                Thread.Sleep(CurrentGameDeleay);
                 Snake.Move();
             }
         }
