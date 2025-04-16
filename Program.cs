@@ -24,16 +24,6 @@
                 Console.WriteLine("Only windows supported");
             }
         }
-        private static void GameLoop()
-        {
-            while (GameFlowController.IsGameRunnig)
-            {
-                Snake.Move();
-
-                Thread.Sleep(500);
-            }
-            Graphics.ShowGameOverText();
-        }
         private static void SetConsoleConfigurations()
         {
             Console.CursorVisible = false;
