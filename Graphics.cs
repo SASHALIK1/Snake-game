@@ -8,6 +8,22 @@ namespace Snake_game
 {
     internal static class Graphics
     {
+        private const string GameOverText = "\r\n" +
+            "████████████████████████████████\r\n" +
+            "█┼┼┼█████┼┼┼██┼┼┼┼┼┼██┼┼█████┼┼█\r\n" +
+            "█┼┼┼█████┼┼┼█┼┼┼██┼┼┼█┼┼█████┼┼█\r\n" +
+            "██┼┼┼███┼┼┼██┼┼████┼┼█┼┼█████┼┼█\r\n" +
+            "███┼┼┼┼┼┼┼███┼┼████┼┼█┼┼█████┼┼█\r\n" +
+            "█████┼┼┼█████┼┼████┼┼█┼┼█████┼┼█\r\n" +
+            "█████┼┼┼█████┼┼┼██┼┼┼█┼┼┼███┼┼┼█\r\n" +
+            "█████┼┼┼██████┼┼┼┼┼┼███┼┼┼┼┼┼┼██\r\n" +
+            "████████████████████████████████\r\n" +
+            "█┼┼█████┼┼┼┼┼┼┼█┼┼┼┼┼┼█┼┼┼┼┼┼┼┼█\r\n" +
+            "█┼┼█████┼┼███┼┼█┼┼█████┼┼███████\r\n" +
+            "█┼┼█████┼┼███┼┼█┼┼┼┼┼┼█┼┼┼┼┼┼███\r\n" +
+            "█┼┼█████┼┼███┼┼█████┼┼█┼┼███████\r\n" +
+            "█┼┼█████┼┼███┼┼█████┼┼█┼┼███████\r\n" +
+            "█┼┼┼┼┼┼█┼┼┼┼┼┼┼█┼┼┼┼┼┼█┼┼┼┼┼┼┼┼█";
         public static void VisualizeList(IEnumerable<GameObject> visualizableObjects)
         {
             foreach (var visualizableObject in visualizableObjects)
@@ -19,6 +35,12 @@ namespace Snake_game
         {
             Console.SetCursorPosition(visualizableObject.X, visualizableObject.Y);
             Console.Write(visualizableObject.Shape);
+        }
+        public static void ShowGameOverText()
+        {
+            Console.Clear();
+            Console.SetCursorPosition(0, 0);
+            Console.WriteLine(GameOverText);
         }
     }
 }

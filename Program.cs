@@ -33,6 +33,7 @@
 
                 Thread.Sleep(500);
             }
+            Graphics.ShowGameOverText();
         }
         private static void SetConsoleConfigurations()
         {
@@ -44,7 +45,7 @@
         }
         private static void InputHandle()
         {
-            while (true)
+            while (IsGameRunnig)
             {
                 ConsoleKeyInfo keyInfo = Console.ReadKey(intercept: true);
                 Snake.Direction = keyInfo.Key;
