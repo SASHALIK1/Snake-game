@@ -39,18 +39,40 @@ namespace Snake_game
         public static void Move()
         {
             Console.Clear();
-
-            _snakeParts.Dequeue();
-
-            if (_currentFruit != null)
+            CheckCollision();
+            if (Program.IsGameRunnig)
             {
-                Graphics.VisualizeObject(_currentFruit);
+                if (_currentFruit != null)
+                {
+                    Graphics.VisualizeObject(_currentFruit);
+                }
+                Graphics.VisualizeList(_snakeParts);
+            }
+        }
+        private static void CheckCollision()
+        {
+            SnakePart snakeHead = _snakeParts.Last();
+            if (_currentFruit != null && snakeHead.X == _currentFruit.X && snakeHead.Y == _currentFruit.Y)
+            {
+                _currentFruit = FruitSpawner.CreateFruit(_snakeParts.ToList());
+                EnqueueNewSnakeUnit();
+            }
+            else
+            {
+                EnqueueNewSnakeUnit();
+                _snakeParts.Dequeue();
             }
 
-            EnqueueNewSnakeUnit();
-
-
-            Graphics.VisualizeList(_snakeParts);
+            if (snakeHead.X > Console.BufferWidth - 2 || snakeHead.Y > Console.BufferHeight - 2 || snakeHead.X < 1 || snakeHead.Y < 1)
+                Program.IsGameRunnig = false;
+            else
+            {
+                foreach (SnakePart snakePart in _snakeParts)
+                {
+                    if (snakePart != snakeHead && snakePart.Equals(snakeHead))
+                        Program.IsGameRunnig = false;
+                }
+            }
         }
         public static void EnqueueNewSnakeUnit()
         {

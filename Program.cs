@@ -2,6 +2,7 @@
 {
     internal class Program
     {
+        public static bool IsGameRunnig { get; set; } = true;
         static void Main(string[] args)
         {
             if (OperatingSystem.IsWindows())
@@ -26,11 +27,11 @@
         }
         private static void GameLoop()
         {
-            while (true)
+            while (IsGameRunnig)
             {
                 Snake.Move();
 
-                Thread.Sleep(1000);
+                Thread.Sleep(500);
             }
         }
         private static void SetConsoleConfigurations()
