@@ -37,6 +37,22 @@ namespace Snake_game
         {
             _snakeParts.Dequeue();
 
+            EnqueueNewSnakeUnit();
+
+            VisualizeList();
+        }
+        public static void VisualizeList()
+        {
+            Console.Clear();
+            foreach (SnakePart snakePart in _snakeParts)
+            {
+                Console.SetCursorPosition(snakePart.X, snakePart.Y);
+
+                Console.Write(snakePart.Shape);
+            }
+        }
+        public static void EnqueueNewSnakeUnit()
+        {
             if (_direction == ConsoleKey.W)
             {
                 _snakeParts.Enqueue(new SnakePart(SnakeParts[_snakeParts.Count - 1].X, SnakeParts[_snakeParts.Count - 1].Y - 1, SnakeShape));
@@ -52,17 +68,6 @@ namespace Snake_game
             else if (_direction == ConsoleKey.D)
             {
                 _snakeParts.Enqueue(new SnakePart(SnakeParts[_snakeParts.Count - 1].X + 1, SnakeParts[_snakeParts.Count - 1].Y, SnakeShape));
-            }
-            VisualizeList();
-        }
-        public static void VisualizeList()
-        {
-            Console.Clear();
-            foreach (SnakePart snakePart in _snakeParts)
-            {
-                Console.SetCursorPosition(snakePart.X, snakePart.Y);
-
-                Console.Write(snakePart.Shape);
             }
         }
     }
