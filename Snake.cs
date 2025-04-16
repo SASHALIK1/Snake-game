@@ -11,8 +11,8 @@ namespace Snake_game
         private const char SnakeShape = '0';
         public static IReadOnlyList<SnakePart> SnakeParts { get { return (IReadOnlyList<SnakePart>)_snakeParts.ToList(); } }
         private static Queue<SnakePart> _snakeParts { get; set; } = new Queue<SnakePart>();
-
-        private static GameKeys _direction = GameKeys.Up;
+        private static GameKeys _currentDirection = GameKeys.Up;
+        private static GameKeys _direction = _currentDirection;
         private static Fruit _currentFruit;
         public static GameKeys Direction
         {
@@ -25,19 +25,19 @@ namespace Snake_game
                 switch (value)
                 {
                     case GameKeys.Up:
-                        if (_direction != GameKeys.Down)
+                        if (_currentDirection != GameKeys.Down)
                             _direction = GameKeys.Up;
                         break;
                     case GameKeys.Down:
-                        if (_direction != GameKeys.Up)
+                        if (_currentDirection != GameKeys.Up)
                             _direction = GameKeys.Down;
                         break;
                     case GameKeys.Left:
-                        if (_direction != GameKeys.Right)
+                        if (_currentDirection != GameKeys.Right)
                             _direction = GameKeys.Left;
                         break;
                     case GameKeys.Right:
-                        if (_direction != GameKeys.Left)
+                        if (_currentDirection != GameKeys.Left)
                             _direction = GameKeys.Right;
                         break;
                 }
@@ -53,6 +53,7 @@ namespace Snake_game
         }
         public static void Move()
         {
+            _currentDirection = _direction;
             CheckCollision();
             if (GameFlowController.IsGameRunnig)
             {
@@ -92,19 +93,19 @@ namespace Snake_game
         }
         public static void EnqueueNewSnakeUnit()
         {
-            if (_direction == GameKeys.Up)
+            if (_currentDirection == GameKeys.Up)
             {
                 _snakeParts.Enqueue(new SnakePart(SnakeParts[_snakeParts.Count - 1].X, SnakeParts[_snakeParts.Count - 1].Y - 1, SnakeShape));
             }
-            else if (_direction == GameKeys.Down)
+            else if (_currentDirection == GameKeys.Down)
             {
                 _snakeParts.Enqueue(new SnakePart(SnakeParts[_snakeParts.Count - 1].X, SnakeParts[_snakeParts.Count - 1].Y + 1, SnakeShape));
             }
-            else if (_direction == GameKeys.Left)
+            else if (_currentDirection == GameKeys.Left)
             {
                 _snakeParts.Enqueue(new SnakePart(SnakeParts[_snakeParts.Count - 1].X - 1, SnakeParts[_snakeParts.Count - 1].Y, SnakeShape));
             }
-            else if (_direction == GameKeys.Right)
+            else if (_currentDirection == GameKeys.Right)
             {
                 _snakeParts.Enqueue(new SnakePart(SnakeParts[_snakeParts.Count - 1].X + 1, SnakeParts[_snakeParts.Count - 1].Y, SnakeShape));
             }
