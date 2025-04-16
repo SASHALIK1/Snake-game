@@ -9,7 +9,6 @@ namespace Snake_game
     static class Snake
     {
         private const char SnakeShape = '0';
-        public static IReadOnlyList<SnakePart> SnakeParts { get { return (IReadOnlyList<SnakePart>)_snakeParts.ToList(); } }
         private static Queue<SnakePart> _snakeParts { get; set; } = new Queue<SnakePart>(new[]
 {
             new SnakePart(8, 13, SnakeShape),
