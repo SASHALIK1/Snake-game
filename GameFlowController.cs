@@ -8,10 +8,18 @@ namespace Snake_game
 {
     class GameFlowController
     {
+        private const int MinGameDelay = 190;
+        private const int DelayChangeStep = 5;
         public static bool IsGameRunnig { get; private set; } = true;
         public static int CurrentGameDeleay { get; private set; } = 400;
         private static bool isGameUpdaterTaskGotten = false;
-
+        public static void DecreaseDelay()
+        {
+            if (CurrentGameDeleay > MinGameDelay)
+            {
+                CurrentGameDeleay -= DelayChangeStep;
+            }
+        }
         public static void StopGame()
         {
             IsGameRunnig = false;

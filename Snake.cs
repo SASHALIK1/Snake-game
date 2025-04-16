@@ -56,12 +56,12 @@ namespace Snake_game
             {
                 _currentFruit = FruitSpawner.CreateFruit(_snakeParts.ToList());
                 EnqueueNewSnakeUnit();
+                GameFlowController.DecreaseDelay();
             }
             else
             {
                 Graphics.ClearVisualizedObject(_snakeParts.Dequeue());
                 EnqueueNewSnakeUnit();
-                
             }
 
             if (snakeHead.X > Console.BufferWidth - 2 || snakeHead.Y > Console.BufferHeight - 2 || snakeHead.X < 1 || snakeHead.Y < 1)
