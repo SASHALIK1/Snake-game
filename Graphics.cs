@@ -24,6 +24,7 @@ namespace Snake_game
             "█┼┼█████┼┼███┼┼█████┼┼█┼┼███████\r\n" +
             "█┼┼█████┼┼███┼┼█████┼┼█┼┼███████\r\n" +
             "█┼┼┼┼┼┼█┼┼┼┼┼┼┼█┼┼┼┼┼┼█┼┼┼┼┼┼┼┼█";
+        private const char WallSymbol = '█';
         public static void VisualizeList(IEnumerable<GameObject> visualizableObjects)
         {
             foreach (var visualizableObject in visualizableObjects)
@@ -35,6 +36,23 @@ namespace Snake_game
         {
             Console.SetCursorPosition(visualizableObject.X, visualizableObject.Y);
             Console.Write(visualizableObject.Shape);
+        }
+        public static void VisualizeWalls()
+        {
+            Console.SetCursorPosition(0, 0);
+            Console.Write(new string(WallSymbol, Console.BufferWidth));
+
+            Console.SetCursorPosition(0, Console.BufferHeight - 1);
+            Console.Write(new string(WallSymbol, Console.BufferWidth));
+
+            for (int i = 0; i < Console.BufferHeight; i++)
+            {
+                Console.SetCursorPosition(0, i);
+                Console.Write(WallSymbol);
+
+                Console.SetCursorPosition(Console.BufferWidth - 1, i);
+                Console.Write(WallSymbol);
+            }
         }
         public static void ShowGameOverText()
         {

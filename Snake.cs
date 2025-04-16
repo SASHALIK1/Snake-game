@@ -38,7 +38,6 @@ namespace Snake_game
         }
         public static void Move()
         {
-            Console.Clear();
             CheckCollision();
             if (Program.IsGameRunnig)
             {
@@ -47,6 +46,7 @@ namespace Snake_game
                     Graphics.VisualizeObject(_currentFruit);
                 }
                 Graphics.VisualizeList(_snakeParts);
+                Graphics.VisualizeWalls();
             }
         }
         private static void CheckCollision()
