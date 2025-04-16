@@ -13,7 +13,6 @@ namespace Snake_game
         public static Fruit CreateFruit(List<SnakePart> snakeParts)
         {
             int randomX, randomY;
-            SnakePart newFruitPosition;
 
             do
             {
