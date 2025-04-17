@@ -70,6 +70,7 @@ namespace Snake_game
             {
                 _currentFruit = FruitSpawner.CreateFruit(_snakeParts.ToList());
                 GameFlowController.DecreaseDelay();
+                Score++;
             }
             else
             {

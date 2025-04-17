@@ -8,6 +8,7 @@
             {
                 SetConsoleConfigurations();
 
+                GameStatsManager.LoadData();
 
                 Task readKeyTask = InputHandler.GetCheckKeyTask();
                 Task gameUpdaterTask = GameFlowController.GetGameUpdaterTask();

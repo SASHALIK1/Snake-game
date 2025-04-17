@@ -51,11 +51,22 @@ namespace Snake_game
                 VisualizeChar(Console.BufferWidth - 1, i, WallSymbol);
             }
         }
-        public static void ShowGameOverText()
+        public static void ShowGameOverText(int currentScore, int highScore)
         {
             Console.Clear();
             Console.SetCursorPosition(0, 0);
-            Console.Write(GameOverText + $"\r\nYour final score: {Snake.Score}");
+            
+            if (highScore < currentScore)
+            {
+                Console.Write(GameOverText + $"\r\nNew high score!: {currentScore}");
+            }
+            else
+            {
+                Console.Write(GameOverText + 
+                    $"\r\nYour final score: {currentScore}" +
+                    $"\r\nHigh score: {highScore}");
+            }
+            
         }
         public static void ClearVisualizedObject(GameObject gameObject)
         {

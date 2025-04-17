@@ -23,7 +23,7 @@ namespace Snake_game
         public static void StopGame()
         {
             IsGameRunnig = false;
-            Graphics.ShowGameOverText();
+            Graphics.ShowGameOverText(Snake.Score, GameStatsManager.gameStats.HighScore);
         }
         public static Task GetGameUpdaterTask()
         {
@@ -40,6 +40,11 @@ namespace Snake_game
             {
                 Thread.Sleep(CurrentGameDeleay);
                 Snake.Move();
+            }
+            if (GameStatsManager.gameStats.HighScore < Snake.Score)
+            {
+                GameStatsManager.gameStats.HighScore = Snake.Score;
+                GameStatsManager.SaveData();
             }
         }
     }
