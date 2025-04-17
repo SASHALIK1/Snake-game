@@ -9,15 +9,15 @@ namespace Snake_game
     static class Snake
     {
         private const char SnakeShape = '0';
-        private static Queue<SnakePart> _snakeParts { get; set; } = new Queue<SnakePart>(new[]
+        private static Queue<SnakeObject> _snakeParts { get; set; } = new Queue<SnakeObject>(new[]
 {
-            new SnakePart(8, 13, SnakeShape),
-            new SnakePart(8, 12, SnakeShape)
+            new SnakeObject(8, 13, SnakeShape),
+            new SnakeObject(8, 12, SnakeShape)
         });
 
         private static GameKeys _currentDirection = GameKeys.Up;
         private static GameKeys _direction = _currentDirection;
-        private static Fruit _currentFruit = FruitSpawner.CreateFruit(_snakeParts.ToList());
+        private static FruitObject _currentFruit = FruitSpawner.CreateFruit(_snakeParts.ToList());
         public static int Score { get; private set; } = 0;
         public static GameKeys Direction
         {
@@ -65,7 +65,7 @@ namespace Snake_game
         }
         private static void CheckCollision()
         {
-            SnakePart snakeHead = _snakeParts.Last();
+            SnakeObject snakeHead = _snakeParts.Last();
             if (_currentFruit != null && snakeHead.X == _currentFruit.X && snakeHead.Y == _currentFruit.Y)
             {
                 _currentFruit = FruitSpawner.CreateFruit(_snakeParts.ToList());
@@ -82,7 +82,7 @@ namespace Snake_game
                 GameFlowController.StopGame();
             else
             {
-                foreach (SnakePart snakePart in _snakeParts)
+                foreach (SnakeObject snakePart in _snakeParts)
                 {
                     if (snakePart != snakeHead && snakePart.Equals(snakeHead))
                         GameFlowController.StopGame();
@@ -94,29 +94,29 @@ namespace Snake_game
             if (_currentDirection == GameKeys.Up)
             {
                 _snakeParts.Enqueue(
-                    new SnakePart(GetReadOnlySnakeParts()[_snakeParts.Count - 1].X,
+                    new SnakeObject(GetReadOnlySnakeParts()[_snakeParts.Count - 1].X,
                     GetReadOnlySnakeParts()[_snakeParts.Count - 1].Y - 1, SnakeShape));
             }
             else if (_currentDirection == GameKeys.Down)
             {
                 _snakeParts.Enqueue(
-                    new SnakePart(GetReadOnlySnakeParts()[_snakeParts.Count - 1].X,
+                    new SnakeObject(GetReadOnlySnakeParts()[_snakeParts.Count - 1].X,
                     GetReadOnlySnakeParts()[_snakeParts.Count - 1].Y + 1, SnakeShape));
             }
             else if (_currentDirection == GameKeys.Left)
             {
                 _snakeParts.Enqueue(
-                    new SnakePart(GetReadOnlySnakeParts()[_snakeParts.Count - 1].X - 1,
+                    new SnakeObject(GetReadOnlySnakeParts()[_snakeParts.Count - 1].X - 1,
                     GetReadOnlySnakeParts()[_snakeParts.Count - 1].Y, SnakeShape));
             }
             else if (_currentDirection == GameKeys.Right)
             {
                 _snakeParts.Enqueue(
-                    new SnakePart(GetReadOnlySnakeParts()[_snakeParts.Count - 1].X + 1,
+                    new SnakeObject(GetReadOnlySnakeParts()[_snakeParts.Count - 1].X + 1,
                     GetReadOnlySnakeParts()[_snakeParts.Count - 1].Y, SnakeShape));
             }
         }
-        private static IReadOnlyList<SnakePart> GetReadOnlySnakeParts()
+        private static IReadOnlyList<SnakeObject> GetReadOnlySnakeParts()
         {
             return _snakeParts.ToList();
         }

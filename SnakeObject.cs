@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace Snake_game
 {
-    internal class SnakePart : GameObject
+    internal class SnakeObject : GameObject
     {
-        public SnakePart(int x, int y, char shape)
+        public SnakeObject(int x, int y, char shape)
         {
             X = x;
             Y = y;
             Shape = shape;
         }
-        public SnakePart(int x, int y)
+        public SnakeObject(int x, int y)
         {
             X = x;
             Y = y;
