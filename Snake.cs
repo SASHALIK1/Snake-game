@@ -18,6 +18,7 @@ namespace Snake_game
         private static GameKeys _currentDirection = GameKeys.Up;
         private static GameKeys _direction = _currentDirection;
         private static Fruit _currentFruit = FruitSpawner.CreateFruit(_snakeParts.ToList());
+        public static int Score { get; private set; } = 0;
         public static GameKeys Direction
         {
             get
@@ -59,6 +60,7 @@ namespace Snake_game
                 }
                 Graphics.VisualizeList(_snakeParts);
                 Graphics.VisualizeWalls();
+                Graphics.VisualizeText(0, 0, "Score: " + Score);
             }
         }
         private static void CheckCollision()
@@ -75,8 +77,7 @@ namespace Snake_game
             }
             EnqueueNewSnakeUnit();
 
-
-            if (snakeHead.X > Console.BufferWidth - 2 || snakeHead.Y > Console.BufferHeight - 2 || snakeHead.X < 1 || snakeHead.Y < 1)
+            if (snakeHead.X > Console.BufferWidth - 2 || snakeHead.Y > Console.BufferHeight - 2 || snakeHead.X < 1 || snakeHead.Y < 2)
                 GameFlowController.StopGame();
             else
             {
