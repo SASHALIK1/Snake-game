@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Snake_game
+namespace Snake_game.Game
 {
     internal class SnakeObject : GameObject
     {

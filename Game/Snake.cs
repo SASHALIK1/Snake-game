@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Snake_game.InputManaging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Snake_game
+namespace Snake_game.Game
 {
     static class Snake
     {

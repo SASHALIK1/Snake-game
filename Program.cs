@@ -1,4 +1,8 @@
-﻿namespace Snake_game
+﻿using Snake_game.Data;
+using Snake_game.Game;
+using Snake_game.InputManaging;
+
+namespace Snake_game
 {
     internal class Program
     {
