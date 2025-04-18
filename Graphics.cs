@@ -25,6 +25,21 @@ namespace Snake_game
             "█┼┼█████┼┼███┼┼█████┼┼█┼┼███████\r\n" +
             "█┼┼█████┼┼███┼┼█████┼┼█┼┼███████\r\n" +
             "█┼┼┼┼┼┼█┼┼┼┼┼┼┼█┼┼┼┼┼┼█┼┼┼┼┼┼┼┼█";
+        private const string YouWonText = "\r\n" +
+            "█┼┼┼█████┼┼┼██┼┼┼┼┼┼██┼┼█████┼┼█\r\n" +
+            "█┼┼┼█████┼┼┼█┼┼┼██┼┼┼█┼┼█████┼┼█\r\n" +
+            "██┼┼┼███┼┼┼██┼┼████┼┼█┼┼█████┼┼█\r\n" +
+            "███┼┼┼┼┼┼┼███┼┼████┼┼█┼┼█████┼┼█\r\n" +
+            "█████┼┼┼█████┼┼████┼┼█┼┼█████┼┼█\r\n" +
+            "█████┼┼┼█████┼┼┼██┼┼┼█┼┼┼███┼┼┼█\r\n" +
+            "█████┼┼┼██████┼┼┼┼┼┼███┼┼┼┼┼┼┼██\r\n" +
+            "████████████████████████████████\r\n" +
+            "██┼┼┼█┼┼┼█┼┼┼██┼┼┼┼┼██┼┼┼███┼┼██\r\n" +
+            "██┼┼┼█┼┼┼█┼┼┼███┼┼┼███┼┼┼┼██┼┼██\r\n" +
+            "██┼┼┼█┼┼┼█┼┼┼███┼┼┼███┼┼█┼┼█┼┼██\r\n" +
+            "██┼┼┼█┼┼┼█┼┼┼███┼┼┼███┼┼█┼┼█┼┼██\r\n" +
+            "██┼┼┼┼┼┼┼┼┼┼┼███┼┼┼███┼┼██┼┼┼┼██\r\n" +
+            "███┼┼┼┼█┼┼┼┼███┼┼┼┼┼██┼┼███┼┼┼██";
         private const char WallSymbol = '█';
         public static void VisualizeList(IEnumerable<GameObject> visualizableObjects)
         {
@@ -56,7 +71,6 @@ namespace Snake_game
         {
             Console.Clear();
             Console.SetCursorPosition(0, 0);
-            
             if (highScore < currentScore)
             {
                 Console.Write(GameOverText + $"\r\nNew high score!: {currentScore}");
@@ -67,7 +81,12 @@ namespace Snake_game
                     $"\r\nYour final score: {currentScore}" +
                     $"\r\nHigh score: {highScore}");
             }
-            
+        }
+        public static void ShowYouWonText()
+        {
+            Console.Clear();
+            Console.SetCursorPosition(0, 0);
+            Console.WriteLine(YouWonText);
         }
         public static void ClearVisualizedObject(GameObject gameObject)
         {
