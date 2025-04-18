@@ -9,6 +9,7 @@ namespace Snake_game.Game
 {
     static class Snake
     {
+        private const int MaxGameScore = 388;
         private const char SnakeShape = '0';
         private static Queue<SnakeObject> _snakeParts { get; set; } = new Queue<SnakeObject>(new[]
 {
@@ -69,9 +70,13 @@ namespace Snake_game.Game
             SnakeObject snakeHead = _snakeParts.Last();
             if (_currentFruit != null && snakeHead.X == _currentFruit.X && snakeHead.Y == _currentFruit.Y)
             {
+                Score++;
+                if (Score >= MaxGameScore)
+                {
+                    GameFlowController.WinGame();
+                }
                 _currentFruit = FruitSpawner.CreateFruit(_snakeParts.ToList());
                 GameFlowController.DecreaseDelay();
-                Score++;
             }
             else
             {
@@ -80,13 +85,13 @@ namespace Snake_game.Game
             EnqueueNewSnakeUnit();
 
             if (snakeHead.X > Console.BufferWidth - 2 || snakeHead.Y > Console.BufferHeight - 2 || snakeHead.X < 1 || snakeHead.Y < 2)
-                GameFlowController.StopGame();
+                GameFlowController.LoseGame();
             else
             {
                 foreach (SnakeObject snakePart in _snakeParts)
                 {
                     if (snakePart != snakeHead && snakePart.Equals(snakeHead))
-                        GameFlowController.StopGame();
+                        GameFlowController.LoseGame();
                 }
             }
         }

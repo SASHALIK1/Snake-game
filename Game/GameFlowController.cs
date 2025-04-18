@@ -21,10 +21,15 @@ namespace Snake_game.Game
                 CurrentGameDeleay -= DelayChangeStep;
             }
         }
-        public static void StopGame()
+        public static void LoseGame()
         {
             IsGameRunnig = false;
+
             Graphics.ShowGameOverText(Snake.Score, GameStatsManager.gameStats.HighScore);
+        }
+        public static void WinGame()
+        {
+            Graphics.ShowYouWonText();
         }
         public static Task GetGameUpdaterTask()
         {
