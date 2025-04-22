@@ -10,7 +10,6 @@ namespace Snake_game
     internal static class Graphics
     {
         private const string GameOverText = "\r\n" +
-            "████████████████████████████████\r\n" +
             "█┼┼┼█████┼┼┼██┼┼┼┼┼┼██┼┼█████┼┼█\r\n" +
             "█┼┼┼█████┼┼┼█┼┼┼██┼┼┼█┼┼█████┼┼█\r\n" +
             "██┼┼┼███┼┼┼██┼┼████┼┼█┼┼█████┼┼█\r\n" +
