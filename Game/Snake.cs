@@ -12,7 +12,7 @@ namespace Snake_game.Game
         private const int MaxGameScore = 388;
         private const char SnakeShape = '0';
         private static Queue<SnakeObject> _snakeParts { get; set; } = new Queue<SnakeObject>(new[]
-{
+        {
             new SnakeObject(8, 13, SnakeShape),
             new SnakeObject(8, 12, SnakeShape)
         });
